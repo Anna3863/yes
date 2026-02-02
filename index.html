@@ -1,58 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>School Navigator</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <div class="app">
 
   <header class="glass">
     <h1>School Map</h1>
+
+    <!-- Floor arrows -->
+    <div class="floor-controls">
+      <button onclick="prevFloor()">⬅</button>
+      <span id="currentFloor">Floor 0</span>
+      <button onclick="nextFloor()">➡</button>
+    </div>
+
+    <!-- Search bar -->
     <div class="search-box">
-      <input
-        id="search"
-        placeholder="Search classroom (e.g. 101, music)"
-        oninput="updateSuggestions()"
-      />
+      <div class="search-icon">🔍</div>
+      <input id="search" placeholder="Search classroom (e.g. 101, music)" oninput="updateSuggestions()">
       <div id="suggestions"></div>
     </div>
   </header>
 
   <main class="glass map-container">
-    <svg viewBox="0 0 700 250">
-
-      <!-- hallway -->
-      <rect x="50" y="120" width="600" height="20" class="hallway"/>
-
-      <!-- rooms -->
-      <g class="room" onclick="selectRoom('101')">
-        <rect x="80" y="60" width="80" height="40"/>
-        <text x="120" y="85">101</text>
+    <svg id="map" viewBox="0 0 900 350">
+      <!-- Hallway -->
+      <rect x="50" y="140" width="800" height="20" class="hallway"/>
+      <!-- Example rooms (Floor 0) -->
+      <g class="room" onclick="selectRoom('01')">
+        <rect x="60" y="60" width="60" height="40"/>
+        <text x="90" y="80">01</text>
       </g>
-
-      <g class="room" onclick="selectRoom('102')">
-        <rect x="190" y="60" width="80" height="40"/>
-        <text x="230" y="85">102</text>
+      <g class="room" onclick="selectRoom('02')">
+        <rect x="140" y="60" width="60" height="40"/>
+        <text x="170" y="80">02</text>
       </g>
-
-      <g class="room" onclick="selectRoom('103')">
-        <rect x="300" y="60" width="80" height="40"/>
-        <text x="340" y="85">103</text>
+      <g class="room" onclick="selectRoom('03')">
+        <rect x="220" y="60" width="60" height="40"/>
+        <text x="250" y="80">03</text>
       </g>
-
-      <g class="room" onclick="selectRoom('104')">
-        <rect x="410" y="60" width="80" height="40"/>
-        <text x="450" y="85">104</text>
-      </g>
-
-      <g class="room" onclick="selectRoom('105')">
-        <rect x="520" y="60" width="80" height="40"/>
-        <text x="560" y="85">105</text>
-      </g>
-
     </svg>
 
     <div id="info">Select a classroom</div>
