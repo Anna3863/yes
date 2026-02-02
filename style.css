@@ -1,48 +1,113 @@
+/* background */
 body {
-  font-family: Arial, sans-serif;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* app container */
+.app {
+  width: 90%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
   padding: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 
-input, button {
+/* header */
+header h1 {
+  margin: 0 0 10px;
+  font-weight: 600;
+}
+
+/* search */
+.search-box {
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
   font-size: 16px;
-  padding: 5px;
 }
 
-#instructions {
-  margin: 15px 0;
-  font-weight: bold;
+/* suggestions */
+#suggestions {
+  position: absolute;
+  width: 100%;
+  background: rgba(255,255,255,0.9);
+  color: black;
+  border-radius: 12px;
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.suggestion {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestion:hover {
+  background: #eee;
+}
+
+/* map */
+.map-container {
+  text-align: center;
 }
 
 svg {
-  border: 1px solid #aaa;
-  margin-top: 20px;
   width: 100%;
-  max-width: 600px;
+  max-height: 300px;
 }
 
-/* MAP STYLES */
+/* hallway */
 .hallway {
-  fill: #ddd;
+  fill: rgba(255,255,255,0.4);
 }
 
-.room {
-  fill: #8ecae6;
+/* rooms */
+.room rect {
+  fill: rgba(255,255,255,0.6);
+  stroke: rgba(255,255,255,0.8);
+  rx: 10;
 }
 
-.stairs {
+.room text {
+  fill: black;
+  font-weight: bold;
+  text-anchor: middle;
+}
+
+.room:hover rect {
   fill: #ffb703;
+  cursor: pointer;
 }
 
-#routePath {
-  fill: none;
-  stroke: red;
-  stroke-width: 5;
-  stroke-dasharray: 10;
-  animation: dash 1s linear infinite;
+.room.selected rect {
+  fill: #ff7a18;
 }
 
-@keyframes dash {
-  to {
-    stroke-dashoffset: -20;
-  }
+/* info */
+#info {
+  margin-top: 15px;
+  font-size: 18px;
 }
