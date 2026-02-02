@@ -1,3 +1,6 @@
+alert("JS LOADED");
+
+
 const rooms = ["101", "102", "103", "104", "105", "music"];
 let selected = null;
 
@@ -36,3 +39,4 @@ function updateSuggestions() {
       box.appendChild(div);
     });
 }
+
