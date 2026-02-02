@@ -1,0 +1,48 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+input, button {
+  font-size: 16px;
+  padding: 5px;
+}
+
+#instructions {
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+svg {
+  border: 1px solid #aaa;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* MAP STYLES */
+.hallway {
+  fill: #ddd;
+}
+
+.room {
+  fill: #8ecae6;
+}
+
+.stairs {
+  fill: #ffb703;
+}
+
+#routePath {
+  fill: none;
+  stroke: red;
+  stroke-width: 5;
+  stroke-dasharray: 10;
+  animation: dash 1s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
