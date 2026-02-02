@@ -1,59 +1,38 @@
-// simple graph (you'll expand this later)
-const graph = {
-  "101": { next: ["102"], svg: "room-101" },
-  "102": { next: ["101", "103"], svg: "room-102" },
-  "103": { next: ["102"], svg: "room-103" },
-  "stairs": { next: ["101"], svg: "stairs-middle" },
-  "music": { next: ["stairs"], svg: null }
-};
+const rooms = ["101", "102", "103", "104", "105", "music"];
+let selected = null;
 
-const startRoom = "101";
+function selectRoom(room) {
+  document.querySelectorAll(".room").forEach(r =>
+    r.classList.remove("selected")
+  );
 
-function findRoute() {
-  const target = document.getElementById("roomInput").value.trim();
-  if (!graph[target]) {
-    document.getElementById("instructions").innerText = "Room not found.";
-    return;
-  }
+  const el = [...document.querySelectorAll(".room")]
+    .find(g => g.textContent.trim() === room);
 
-  const queue = [[startRoom]];
-  const visited = new Set([startRoom]);
+  if (el) el.classList.add("selected");
 
-  while (queue.length) {
-    const path = queue.shift();
-    const last = path[path.length - 1];
+  selected = room;
+  document.getElementById("info").innerText =
+    "Selected classroom: " + room;
 
-    if (last === target) {
-      showInstructions(path);
-      drawPath(path);
-      return;
-    }
-
-    for (const n of graph[last].next) {
-      if (!visited.has(n)) {
-        visited.add(n);
-        queue.push([...path, n]);
-      }
-    }
-  }
+  document.getElementById("suggestions").innerHTML = "";
+  document.getElementById("search").value = room;
 }
 
-function showInstructions(path) {
-  document.getElementById("instructions").innerText =
-    "Go through: " + path.join(" → ");
-}
+function updateSuggestions() {
+  const value = document.getElementById("search").value.toLowerCase();
+  const box = document.getElementById("suggestions");
+  box.innerHTML = "";
 
-function drawPath(path) {
-  const coords = path
-    .map(p => graph[p].svg)
-    .filter(id => id)
-    .map(id => {
-      const el = document.getElementById(id);
-      const x = el.x.baseVal.value + el.width.baseVal.value / 2;
-      const y = el.y.baseVal.value + el.height.baseVal.value / 2;
-      return `${x},${y}`;
+  if (!value) return;
+
+  rooms
+    .filter(r => r.includes(value))
+    .forEach(r => {
+      const div = document.createElement("div");
+      div.className = "suggestion";
+      div.innerText = r;
+      div.onclick = () => selectRoom(r);
+      box.appendChild(div);
     });
-
-  document.getElementById("routePath")
-    .setAttribute("d", "M " + coords.join(" L "));
 }
