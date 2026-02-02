@@ -1,41 +1,47 @@
-/* background */
+:root {
+  --space-indigo: #22223bff;
+  --dusty-grape: #4a4e69ff;
+  --lilac-ash: #9a8c98ff;
+  --almond-silk: #c9ada7ff;
+  --parchment: #f2e9e4ff;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  background: var(--space-indigo);
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  color: white;
+  align-items: flex-start;
+  padding: 30px;
+  color: var(--parchment);
 }
 
-/* app container */
 .app {
   width: 90%;
-  max-width: 900px;
+  max-width: 1000px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* glass effect */
 .glass {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-radius: 20px;
+  border-radius: 18px;
   padding: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
 }
 
-/* header */
 header h1 {
   margin: 0 0 10px;
   font-weight: 600;
+  color: var(--parchment);
 }
 
-/* search */
+/* Search */
 .search-box {
   position: relative;
 }
@@ -47,17 +53,22 @@ header h1 {
   border: none;
   outline: none;
   font-size: 16px;
+  background: rgba(255,255,255,0.08);
+  color: var(--parchment);
 }
 
-/* suggestions */
 #suggestions {
   position: absolute;
+  top: 45px;
   width: 100%;
-  background: rgba(255,255,255,0.9);
-  color: black;
+  z-index: 10;
+  background: rgba(255,255,255,0.95);
+  color: var(--space-indigo);
   border-radius: 12px;
-  margin-top: 5px;
   overflow: hidden;
+  max-height: 150px;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 
 .suggestion {
@@ -66,48 +77,50 @@ header h1 {
 }
 
 .suggestion:hover {
-  background: #eee;
+  background: var(--lilac-ash);
+  color: var(--parchment);
 }
 
-/* map */
+/* Map */
 .map-container {
   text-align: center;
 }
 
 svg {
   width: 100%;
-  max-height: 300px;
+  max-height: 350px;
 }
 
 /* hallway */
 .hallway {
-  fill: rgba(255,255,255,0.4);
+  fill: var(--dusty-grape);
 }
 
 /* rooms */
 .room rect {
-  fill: rgba(255,255,255,0.6);
-  stroke: rgba(255,255,255,0.8);
-  rx: 10;
-}
-
-.room text {
-  fill: black;
-  font-weight: bold;
-  text-anchor: middle;
+  fill: rgba(255,255,255,0.08);
+  stroke: var(--almond-silk);
+  rx: 6px;
+  ry: 6px;
 }
 
 .room:hover rect {
-  fill: #ffb703;
-  cursor: pointer;
+  fill: var(--lilac-ash);
 }
 
 .room.selected rect {
-  fill: #ff7a18;
+  fill: var(--almond-silk);
 }
 
-/* info */
+.room text {
+  fill: var(--parchment);
+  font-weight: bold;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
 #info {
   margin-top: 15px;
   font-size: 18px;
+  color: var(--parchment);
 }
