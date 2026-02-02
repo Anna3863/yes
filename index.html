@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>School Navigator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>School Classroom Finder</h1>
+
+<input id="roomInput" placeholder="Enter classroom (ex: 104 or music)">
+<button onclick="findRoute()">Find route</button>
+
+<div id="instructions"></div>
+
+<!-- SVG MAP -->
+<svg id="map" viewBox="0 0 600 200">
+  <!-- hallway -->
+  <rect x="50" y="90" width="500" height="20" class="hallway"/>
+
+  <!-- rooms -->
+  <rect id="room-101" x="80" y="50" width="40" height="30" class="room"/>
+  <rect id="room-102" x="140" y="50" width="40" height="30" class="room"/>
+  <rect id="room-103" x="200" y="50" width="40" height="30" class="room"/>
+
+  <!-- staircase -->
+  <rect id="stairs-middle" x="300" y="120" width="40" height="40" class="stairs"/>
+
+  <!-- animated path -->
+  <path id="routePath" d="" />
+</svg>
+
+<script src="script.js"></script>
+</body>
+</html>
